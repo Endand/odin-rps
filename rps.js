@@ -27,9 +27,22 @@ else if(playerSelection==="scissors" && computerSelection==="paper"){
 }else if(playerSelection==="scissors" && computerSelection==="rock"){
    result="You Lose! Rock beats Scissors"
 }else{
-   console.log("Please input a valid input: rock, paper, scissors")
+   result="Please input a valid input: rock, paper, scissors";
 }
 return result;
 
 }
 
+function playGame(){
+   let i=0;
+   while(i<5){
+      result=play(prompt("Please choose one: Rock, Paper, Scissors"),getComputerChoice())
+      if (result==="Please input a valid input: rock, paper, scissors"){
+         i-=1;
+      }
+      console.log(result);
+      i+=1;
+   }
+}
+
+playGame();
