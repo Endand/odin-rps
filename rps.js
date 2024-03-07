@@ -1,10 +1,13 @@
+
+const body=document.querySelector('body');
+
 function getComputerChoice(){
    const choices=["Rock","Paper","Scissors"];
    const choice=choices[Math.floor(Math.random() * choices.length)];
    return choice
 }
 
-function play(playerSelection,computerSelection){
+function playRound(playerSelection,computerSelection){
    playerSelection= playerSelection.toLowerCase();
    computerSelection=computerSelection.toLowerCase();
    let result=""
@@ -26,23 +29,28 @@ else if(playerSelection==="scissors" && computerSelection==="paper"){
    result="You Win! Scissors beats Paper"
 }else if(playerSelection==="scissors" && computerSelection==="rock"){
    result="You Lose! Rock beats Scissors"
-}else{
-   result="Please input a valid input: rock, paper, scissors";
 }
+
 return result;
 
 }
+const rockButton = document.querySelector('.rockButton');
+const paperButton = document.querySelector('.paperButton');
+const scissorsButton = document.querySelector('.scissorsButton');
 
-function playGame(){
-   let i=0;
-   while(i<5){
-      result=play(prompt("Please choose one: Rock, Paper, Scissors"),getComputerChoice())
-      if (result==="Please input a valid input: rock, paper, scissors"){
-         i-=1;
-      }
-      console.log(result);
-      i+=1;
-   }
+
+
+rockButton.addEventListener('click',()=>{getResult('rock')});
+paperButton.addEventListener('click',()=>{getResult('paper')});
+scissorsButton.addEventListener('click',()=>{getResult('scissors')});
+
+
+
+const resultScreen = document.createElement('div');
+resultScreen.appendChild(document.createTextNode(''));
+body.appendChild(resultScreen);
+
+function getResult(choice) {
+   const roundResult = playRound(choice, getComputerChoice());
+   resultScreen.textContent = roundResult;
 }
-
-playGame();
